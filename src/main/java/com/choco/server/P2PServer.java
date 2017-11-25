@@ -23,7 +23,8 @@ public class P2PServer {
     }
 
     public static void main(String[] args) throws IOException {
-        P2PServer server = new P2PServer();
-        server.start();
+//        P2PServer server = new P2PServer();
+//        server.start();
+        UDP.getUDP(12345).recvMsg(new ServerHandler());
     }
 }

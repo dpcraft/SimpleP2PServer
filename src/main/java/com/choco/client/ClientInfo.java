@@ -22,7 +22,7 @@ public class ClientInfo {
     @Expose(deserialize = false) private String address = "255.255.255.0";
     @Expose(serialize = false) private String token;
     @Expose(serialize = false,deserialize = false)
-    private final long timeoutMillSeconds = 10 * 1000;
+    private final long timeoutMillSeconds = 20 * 1000;
     @Expose(serialize = false,deserialize = false)
     private Date updateTime;
 
@@ -44,6 +44,10 @@ public class ClientInfo {
         }
         return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().
                 create().fromJson(request, ClientInfo.class);
+    }
+    public static ClientInfo fromJSON(String JsonString){
+        return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().
+                create().fromJson(JsonString, ClientInfo.class);
     }
 
     public void setUpdateTime(Date updateTime) {

@@ -51,11 +51,24 @@ public class ServerHandler implements HandleMessage {
 
             System.out.println(clientAddress.getHostAddress() + ":" + clientPort);
             System.out.println("receive: " + info);
-            UDP.getUDP(12345).sendMsg(clientAddress,clientPort,response.toJson());
+            sendMSG(clientAddress,clientPort,response.toJson());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+    public static void sendMSG(final InetAddress address , final int port, final String msg){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                UDP.getUDP(0).sendMsg(address, port, msg);
+
+            }
+        }).start();
+
     }
 }

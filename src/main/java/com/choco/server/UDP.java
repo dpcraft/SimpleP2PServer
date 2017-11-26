@@ -28,6 +28,7 @@ public class UDP {
 
         try {
             this.socket = new DatagramSocket(port);
+
         } catch (SocketException e) {
             e.printStackTrace();
         }
